@@ -5,6 +5,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Window;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class Bouton extends JButton implements MouseListener{
 	
@@ -47,6 +49,7 @@ public class Bouton extends JButton implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "coucou");
 		
 	}
 
@@ -62,6 +65,8 @@ public class Bouton extends JButton implements MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent event) {
+		JOptionPane.showMessageDialog(null, "coucou");
+
 
 		try {
 			img = ImageIO.read(new File("fondBouton.png"));
