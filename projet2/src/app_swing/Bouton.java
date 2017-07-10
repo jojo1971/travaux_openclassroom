@@ -65,8 +65,6 @@ public class Bouton extends JButton implements MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent event) {
-		JOptionPane.showMessageDialog(null, "coucou");
-
 
 		try {
 			img = ImageIO.read(new File("fondBouton.png"));
