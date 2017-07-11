@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
 
 public class Bouton extends JButton implements MouseListener{
 	
-	String name;
-	Image img;
+	private String name;
+	private Image img;
 	
 	public Bouton(String str)
 	{
@@ -38,7 +38,7 @@ public class Bouton extends JButton implements MouseListener{
 	public void paintComponents(Graphics g) {
 	
 		Graphics2D g2d = (Graphics2D)g;
-		GradientPaint gp = new GradientPaint(0, 0, Color.blue,  0, 20, Color.cyan, true);
+		GradientPaint gp = new GradientPaint(0, 0, Color.red,  0, 20, Color.cyan, true);
 		g2d.setPaint(gp);
 		g2d.drawImage(img, 0, 0, this.getWidth(), this.getHeight(),this);
 		g2d.setColor(Color.black);
@@ -48,8 +48,6 @@ public class Bouton extends JButton implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "coucou");
 		
 	}
 
@@ -87,7 +85,7 @@ public class Bouton extends JButton implements MouseListener{
 	public void mouseReleased(MouseEvent event) {
 
 		try {
-			img = ImageIO.read(new File("fondBouton.png"));
+			img = ImageIO.read(new File("fondBoutonHover.png"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
