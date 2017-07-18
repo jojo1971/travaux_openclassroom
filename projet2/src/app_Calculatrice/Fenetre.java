@@ -140,29 +140,26 @@ public class Fenetre extends JFrame  {
 				aff2 = "";
 				result = 0;
 				deus = false;
-			}else
+			}else if(deus == false)
 			{
-				if(deus == false)
-				{
+				
+				
 					aff1 = o.getText();
 
 					if(aff1 == "+")
 					{
 						signe = "+";
-						lab.setText(nbr1+"fffffffff");
+						lab.setText(nbr1);
 						deus = true;
 
 					}else{
 						nbr1 = nbr1 + aff1;
 						lab.setText(nbr1);
 					}
-				}else
-				{//System.out.println(nbr1+" nb2 "+nbr2+signe);
-
-					aff2 = o.getText();
-
-					if(aff2 == "=")
+				}else if (aff2 == "=")
+									
 					{
+						aff2 = o.getText();
 						lab.setText(nbr2);
 						deus = true;
 						result = Double.parseDouble(nbr1) + Double.parseDouble(nbr2);
@@ -173,8 +170,7 @@ public class Fenetre extends JFrame  {
 						lab.setText(nbr2);
 					}
 				}
-			}
-		}
+			
 	}
 	public static void main(String[] args) {
 		Fenetre fenetre = new Fenetre();
