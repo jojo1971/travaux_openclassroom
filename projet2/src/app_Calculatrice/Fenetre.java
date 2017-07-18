@@ -149,7 +149,7 @@ public class Fenetre extends JFrame  {
 					if(aff1 == "+")
 					{
 						signe = "+";
-						lab.setText(nbr1);
+						lab.setText(nbr1+"fffffffff");
 						deus = true;
 
 					}else{
