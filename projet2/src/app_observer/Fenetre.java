@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import javax.swing.JPanel;
 
 public class Fenetre extends JFrame
@@ -16,7 +17,7 @@ public class Fenetre extends JFrame
 	{
 		pan = new JPanel();
 		horloge = new Horloge();
-		lab = new JLabel("date : "+horloge.getHour());
+		lab = new JLabel("date : ");
 		
 		
 		lab.setHorizontalAlignment(JLabel.CENTER);
@@ -33,6 +34,7 @@ public class Fenetre extends JFrame
 
 	public static void main(String[] args)
 	{
+
 		Fenetre fenetre = new Fenetre();
 
 	}
