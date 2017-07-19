@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,6 +39,11 @@ public class Fenetre extends JFrame  {
 	{
 		container.setLayout(new BorderLayout());
 		action1 act = new action1();
+		SignePlus signePlus = new SignePlus();
+		SigneEgal signeEgal = new SigneEgal();
+		SigneMoins signeMoins = new SigneMoins();
+		SigneMult signeMult= new SigneMult();
+		SigneDiv signeDiv = new SigneDiv();
 		this.setTitle("Calculatrice");
 		this.setSize(300,300);
 		this.setLocationRelativeTo(null);
@@ -70,11 +76,13 @@ public class Fenetre extends JFrame  {
 		pan3.add(boutMult);
 		pan3.add(boutDiv);
 
-		boutPlus.addActionListener(act);
-		boutMoins.addActionListener(act);
-		boutMult.addActionListener(act);
-		boutDiv.addActionListener(act);
+		boutPlus.addActionListener(signePlus);
+		boutMoins.addActionListener(signeMoins);
+		boutMult.addActionListener(signeMult);
+		boutDiv.addActionListener(signeDiv);
 		boutC.addActionListener(act);
+		point.addActionListener(act);
+		egal.addActionListener(signeEgal);
 
 		JButton un = new JButton("1");
 		JButton deux = new JButton("2");			
@@ -97,13 +105,6 @@ public class Fenetre extends JFrame  {
 		huit.addActionListener(act);
 		neuf.addActionListener(act);
 		zero.addActionListener(act);
-		
-		boutPlus.addActionListener(act);
-		boutMoins.addActionListener(act);
-		boutMult.addActionListener(act);
-		boutDiv.addActionListener(act);
-		egal.addActionListener(act);
-		point.addActionListener(act);
 
 		pan1.add(un);
 		pan1.add(deux);
@@ -115,7 +116,7 @@ public class Fenetre extends JFrame  {
 		pan1.add(huit);
 		pan1.add(neuf);
 		pan1.add(zero);	
-	
+
 		pan1.add(point);
 		pan1.add(egal);
 
@@ -128,8 +129,8 @@ public class Fenetre extends JFrame  {
 	}
 	public class action1 implements ActionListener
 	{
-
 		public void actionPerformed(ActionEvent arg0) {
+
 			JButton o = (JButton)arg0.getSource();
 			if (o.getText() == "C") {
 				lab.setText("");
@@ -142,36 +143,102 @@ public class Fenetre extends JFrame  {
 				deus = false;
 			}else if(deus == false)
 			{
-				
-				
-					aff1 = o.getText();
 
-					if(aff1 == "+")
-					{
-						signe = "+";
-						lab.setText(nbr1);
-						deus = true;
+				aff1 = o.getText();
+				nbr1 = nbr1 + aff1;
+				lab.setText(nbr1);
+			}else
+			{
+				aff2 = o.getText();
 
-					}else{
-						nbr1 = nbr1 + aff1;
-						lab.setText(nbr1);
-					}
-				}else if (aff2 == "=")
-									
-					{
-						aff2 = o.getText();
-						lab.setText(nbr2);
-						deus = true;
-						result = Double.parseDouble(nbr1) + Double.parseDouble(nbr2);
-						lab.setText(result+"");
-
-					}else{
-						nbr2 = nbr2 + aff2;
-						lab.setText(nbr2);
-					}
-				}
-			
+				nbr2 = nbr2 + aff2;
+				lab.setText(nbr2);
+			}
+		}
 	}
+
+	public class SignePlus implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+			deus = true;
+			signe = "+";
+		}
+
+	}
+	public class SigneMoins implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			deus = true;
+			signe = "-";
+		}
+		
+	}
+	public class SigneMult implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			deus = true;
+			signe = "*";
+		}
+		
+	}
+	public class SigneDiv implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			deus = true;
+			signe = "/";
+		}
+		
+	}
+	public class SigneEgal implements ActionListener
+	{
+		public String dec(Double nbr)
+		{
+			DecimalFormat df = new DecimalFormat("#.#############");
+			return (df.format(nbr));
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			deus = false;
+			
+			switch (signe) {
+			case "+":
+				result = Double.parseDouble(nbr1) + Double.parseDouble(nbr2);
+				lab.setText(dec(result));
+				break;
+			case "-":
+				result = Double.parseDouble(nbr1) - Double.parseDouble(nbr2);
+				lab.setText(dec(result));
+				break;
+			case "*":
+				result = Double.parseDouble(nbr1) * Double.parseDouble(nbr2);
+				lab.setText(dec(result));
+				break;
+			case "/":
+				result = Double.parseDouble(nbr1) / Double.parseDouble(nbr2);
+				lab.setText(dec(result));
+				break;
+
+			default:
+				break;
+			}
+			
+			nbr1 = "";
+			nbr2 = "";
+			
+		}
+
+	}
+	
+	
 	public static void main(String[] args) {
 		Fenetre fenetre = new Fenetre();
 	}
