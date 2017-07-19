@@ -2,6 +2,8 @@ package app_Calculatrice;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,19 +11,16 @@ import java.text.DecimalFormat;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.MatteBorder;
 
 public class Fenetre extends JFrame  {
 
 	private GridLayout grid = new GridLayout(4,	4);	
-	private GridLayout grid2 = new GridLayout(5,	1);	
-	private JButton[] mesBoutons = new JButton[13];
+	private GridLayout grid2 = new GridLayout(5, 1);	
 	private JPanel container = new JPanel();
 	private JPanel pan1 = new JPanel();
-	private JPanel pan2 = new JPanel();
+	private JPanel text = new JPanel();
 	private JPanel pan3 = new JPanel();
 	private JTextField lab = new JTextField();
 	private String nbr1 = "";
@@ -30,11 +29,9 @@ public class Fenetre extends JFrame  {
 	private String signe = "";
 	private String aff1 = "";
 	private String aff2 = "";
-	private String aff3 = "";
-	private int compt = 0;
 	private boolean deus = false;
+	//Dimension panel = new Dimension(20,33);
 
-	private String str = "";
 	public Fenetre()
 	{
 		container.setLayout(new BorderLayout());
@@ -48,10 +45,11 @@ public class Fenetre extends JFrame  {
 		this.setSize(300,300);
 		this.setLocationRelativeTo(null);
 		pan1.setSize(100,300);
-		pan2.setSize(100,30);
-		lab.setText("1254.2");
+		text.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		text.setPreferredSize(new Dimension(200,30));
+		lab.setText("0");
 		lab.setEditable(false);;
-		pan2.add(lab);
+		text.add(lab);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		grid.setHgap(5);
@@ -121,7 +119,7 @@ public class Fenetre extends JFrame  {
 		pan1.add(egal);
 
 		container.add(pan1, BorderLayout.CENTER);
-		container.add(pan2,BorderLayout.NORTH);
+		container.add(text,BorderLayout.NORTH);
 		container.add(pan3,BorderLayout.EAST);
 		this.setContentPane(container);;
 		this.setVisible(true);
