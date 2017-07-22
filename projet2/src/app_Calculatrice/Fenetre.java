@@ -32,6 +32,7 @@ public class Fenetre extends JFrame  {
 	private String aff2 = "";
 	private boolean deus = false;
 	private boolean altern = false;
+	private boolean error = false;
 	private int compt = 0;
 
 	public Fenetre()
@@ -89,7 +90,7 @@ public class Fenetre extends JFrame  {
 		boutC.addActionListener(act);
 		point.addActionListener(act);
 		egal.addActionListener(signeEgal);
-		egal.addActionListener(calcul);
+		//egal.addActionListener(calcul);
 
 		JButton un = new JButton("1");
 		JButton deux = new JButton("2");			
@@ -139,6 +140,7 @@ public class Fenetre extends JFrame  {
 		public void actionPerformed(ActionEvent arg0) {
 
 			altern = false;
+			error = false ;
 			JButton o = (JButton)arg0.getSource();
 			if (o.getText() == "C") {
 				lab.setText("0");
@@ -202,7 +204,65 @@ public class Fenetre extends JFrame  {
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			switch(signe)
+			{
+			case("+") :
+				result = Double.parseDouble(nbr1) + Double.parseDouble(nbr2);
+			altern = true;System.out.println("(+)AVANT : deus = "+deus+" nbr1 = "+nbr1+" nbr2 = "+nbr2+" signe : "+signe+"result : "+result);
+			break;
+			case("-") :System.out.println("(-)AVANT : deus = "+deus+" nbr1 = "+nbr1+" nbr2 = "+nbr2+" signe : "+signe+"result : "+result);
+			result = Double.parseDouble(nbr1) - Double.parseDouble(nbr2);
+			altern = true;
+			break;
+			case("*") :System.out.println("(*)AVANT : deus = "+deus+" nbr1 = "+nbr1+" nbr2 = "+nbr2+" signe : "+signe+"result : "+result);
+			result = Double.parseDouble(nbr1) * Double.parseDouble(nbr2);
+			altern = true;
+
+			break;
+			case("/") :
+				if (Double.parseDouble(nbr2) == 0) {
+					error = true;
+					//lab.setText("0");
+					//nbr1 = "";
+					//nbr2 = "";
+					//signe = "=";
+					//aff1 = "";
+					//aff2 = "";
+					//result = 0;
+					deus = false;
+					//compt = 0;
+					altern = true;
+					System.out.println("(*vvvvv)AVANT : deus = "+deus+" nbr1 = "+nbr1+" nbr2 = "+nbr2+" signe : "+signe+"result : "+result);
+					System.out.println("errorrrrr");
+					break;
+				} else {System.out.println("(*)AVANT : deus = "+deus+" nbr1 = "+nbr1+" nbr2 = "+nbr2+" signe : "+signe+"result : "+result);
+				result = Double.parseDouble(nbr1) / Double.parseDouble(nbr2);
+				altern = true;
+				}
+			break;
+
+			default :
+
+				break;
+			}
+			if(error == false)
+			{
+				nbr1 = result+"";
+				nbr2 = "";
+				lab.setText(dec(result));
+			}else{
+				lab.setText("error");						
+			}								
+			nbr1 = "";
+			nbr2 = "";
 			signe = "=";
+			aff1 = "";
+			aff2 = "";
+			result = 0;
+			deus = false;
+			compt = 0;
+			altern = false;
+
 		}		
 	}
 
@@ -235,44 +295,50 @@ public class Fenetre extends JFrame  {
 					break;
 					case("/") :
 						if (Double.parseDouble(nbr2) == 0) {
-							lab.setText("0");
-							nbr1 = "";
-							nbr2 = "";
-							signe = "=";
-							aff1 = "";
-							aff2 = "";
-							result = 0;
+							error = true;
+							//lab.setText("0");
+							//nbr1 = "";
+							//nbr2 = "";
+							//signe = "=";
+							//aff1 = "";
+							//aff2 = "";
+							//result = 0;
 							deus = false;
-							compt = 0;
+							//compt = 0;
+							altern = true;
 							System.out.println("(*vvvvv)AVANT : deus = "+deus+" nbr1 = "+nbr1+" nbr2 = "+nbr2+" signe : "+signe+"result : "+result);
 							System.out.println("errorrrrr");
 							break;
 						} else {System.out.println("(*)AVANT : deus = "+deus+" nbr1 = "+nbr1+" nbr2 = "+nbr2+" signe : "+signe+"result : "+result);
-							result = Double.parseDouble(nbr1) / Double.parseDouble(nbr2);
-							altern = true;
+						result = Double.parseDouble(nbr1) / Double.parseDouble(nbr2);
+						altern = true;
 						}
 					break;
-					case("=") :
-						System.out.println("===");
-					nbr1 = "";
-					nbr2 = "";
-					aff1 = "";
-					aff2 = "";
-					result = 0;
-					deus = false;
-					compt = 0;
-					altern = false;
-					break;
+
 					default :
 						break;
 					}
-					nbr1 = result+"";
-					nbr2 = "";
-					lab.setText(dec(result));
+					if(error == false)
+					{
+						nbr1 = result+"";
+						nbr2 = "";
+						lab.setText(dec(result));
+					}else{
+
+						lab.setText("error");	
+						nbr1 = "";
+						nbr2 = "";
+						signe = "=";
+						aff1 = "";
+						aff2 = "";
+						result = 0;
+						deus = false;
+						compt = 0;
+						altern = false;
+					}
 				}else
 				{
 					deus = true;
-					altern = true;
 					compt++;
 				}
 			}
