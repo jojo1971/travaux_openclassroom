@@ -288,7 +288,7 @@ public class Fenetre extends JFrame  {
 					result = Double.parseDouble(nbr1) - Double.parseDouble(nbr2);
 					altern = true;
 					break;
-					case("*") :System.out.println("(*)AVANT : deus = "+deus+" nbr1 = "+nbr1+" nbr2 = "+nbr2+" signe : "+signe+"result : "+result);
+					case("*") :
 					result = Double.parseDouble(nbr1) * Double.parseDouble(nbr2);
 					altern = true;
 
