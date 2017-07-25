@@ -7,7 +7,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Path chemin = Paths.get("vxccvx");
+		Path chemin = Paths.get("D:\\Mes documents\\informatique\\travail");
 		String filtre = ".txt";
 		FolderScanner folderScanner = new FolderScanner(chemin,filtre);
 	
