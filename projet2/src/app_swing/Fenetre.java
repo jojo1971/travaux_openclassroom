@@ -21,6 +21,7 @@ public class Fenetre extends JFrame implements ActionListener {
 	private boolean controle = true; 
 	private boolean backX = false, backY = false;
 	private int x, y; 
+	private Thread t;
 
 
 	public Fenetre(){
@@ -79,6 +80,8 @@ public class Fenetre extends JFrame implements ActionListener {
 	{
 		public void actionPerformed(ActionEvent arg0) {	
 			controle = true;
+			t = new Thread(new PlayAnimation());
+			t.start();
 			lab.setText("Vous avez cliqué sur le premier bouton");
 			bouton.setEnabled(false);
 			bouton2.setEnabled(true);
@@ -94,6 +97,13 @@ public class Fenetre extends JFrame implements ActionListener {
 			bouton.setEnabled(true);
 			bouton2.setEnabled(false);
 		}
+	}
+	public class PlayAnimation implements Runnable
+	{
+		@Override
+		public void run() {
+			go();			
+		}		
 	}
 
 	@Override
